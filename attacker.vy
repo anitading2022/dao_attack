@@ -25,6 +25,7 @@ def _attack() -> bool:
 @payable
 def attack(dao_address:address):
     self.dao_address = dao_address
+    self.owner_address = owner_address
     deposit_amount: uint256 = msg.value    
  
     # Attack cannot withdraw more than what exists in the DAO
